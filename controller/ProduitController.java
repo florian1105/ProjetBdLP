@@ -3,7 +3,16 @@ package controller;
 public class ProduitController {
 
 	public ProduitController() {
-		// TODO Auto-generated constructor stub
+		
+	}
+	
+	public static void remove() {
+		
 	}
 
+	public static void add() {
+		
+		
+	}
+	
 }

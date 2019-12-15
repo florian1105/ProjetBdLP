@@ -1,6 +1,10 @@
+package view;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import controller.ProduitController;
 
 public class FenetreSuppressionProduit extends JFrame implements ActionListener {
 
@@ -28,6 +32,7 @@ public class FenetreSuppressionProduit extends JFrame implements ActionListener 
 
 	public void actionPerformed(ActionEvent e) {
 		this.dispose();
+		ProduitController.remove();
 	}
 
 }

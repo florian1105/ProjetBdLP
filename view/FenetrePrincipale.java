@@ -1,3 +1,5 @@
+package view;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -28,7 +30,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener,
 		JPanel panQuitter = new JPanel();
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new FlowLayout());
-		btAfficher = new JButton("Quantités en stock");
+		btAfficher = new JButton("QuantitÃ©s en stock");
 		btNouveauProduit = new JButton("Nouveau Produit");
 		btSupprimerProduit = new JButton("Supprimer Produit");
 //		btNouvelleCategorie = new JButton("Nouvelle Categorie");
@@ -66,10 +68,10 @@ public class FenetrePrincipale extends JFrame implements ActionListener,
 
 	public void actionPerformed(ActionEvent e) {
 
-/* tabProduits permet de tester le fonctionnement des fenêtres avec un tableau de noms de produits "en dur"
-   Quand l'application fonctionnera, il faudra bien sûr récupérer les noms des produits dans le Catalogue */
+/* tabProduits permet de tester le fonctionnement des fenï¿½tres avec un tableau de noms de produits "en dur"
+   Quand l'application fonctionnera, il faudra bien sï¿½r rï¿½cupï¿½rer les noms des produits dans le Catalogue */
 		String[] tabProduits = new String[] { "Mars", "Raider", "Twix", "Treets", "M&M's", "Smarties" };
-/* Même chose pour tabCategories (partie 4) */ 		
+/* Mï¿½me chose pour tabCategories (partie 4) */ 		
 //		String[] tabCategories = new String[] {"Bio", "Luxe" };
 		
 		if (e.getSource() == btAfficher)
