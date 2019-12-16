@@ -19,6 +19,10 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public boolean addProduit(I_Produit produit) {
+		if (produit == null) {
+			return false;
+		}
+		
 		if (this.contient(produit.getNom())) {
 			return false;
 		}
@@ -28,6 +32,10 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public boolean addProduit(String nom, double prix, int qte) {
+		if (nom == null) {
+			return false;
+		}
+		
 		return this.addProduit(new Produit(nom, prix, qte));
 	}
 
@@ -61,8 +69,11 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public boolean acheterStock(String nomProduit, int qteAchetee) {
-		I_Produit produit;
+		if (qteAchetee <= 0) {
+			return false;
+		}
 		
+		I_Produit produit;		
 		try {
 			produit = this.getProduitByName(nomProduit);
 		} catch(ExceptionProduitNotFound e) {
@@ -76,8 +87,11 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public boolean vendreStock(String nomProduit, int qteVendue) {
-		I_Produit produit;
+		if (qteVendue <= 0) {
+			return false;
+		}
 		
+		I_Produit produit;		
 		try {
 			produit = this.getProduitByName(nomProduit);
 		} catch(ExceptionProduitNotFound e) {
