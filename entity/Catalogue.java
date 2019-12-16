@@ -32,7 +32,7 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public boolean addProduit(String nom, double prix, int qte) {
-		if (nom == null) {
+		if (nom == null || prix <= 0 || qte < 0) {
 			return false;
 		}
 		
@@ -126,7 +126,7 @@ public class Catalogue implements I_Catalogue {
 			montantTotal += produit.getPrixStockTTC();
 		}
 		
-		return (new BigDecimal(montantTotal)).setScale(2, RoundingMode.CEILING).doubleValue();
+		return (new BigDecimal(montantTotal)).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
 	}
 
 	@Override
