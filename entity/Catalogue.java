@@ -2,6 +2,7 @@ package entity;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,8 @@ public class Catalogue implements I_Catalogue {
 		for (I_Produit produit : lesProduits) {
 			etatStock += produit.toString();
 		}
-		etatStock += "\n Montant total TTC du stock : " + Double.toString(this.getMontantTotalTTC()).replace(".", ",") + " €";
+		String montantTotalTTC = (new DecimalFormat("0.00")).format(this.getMontantTotalTTC());
+		etatStock += "\nMontant total TTC du stock : " + montantTotalTTC.replace(".", ",") + " €";
 		
 		return etatStock;
 	}
