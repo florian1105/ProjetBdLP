@@ -1,5 +1,7 @@
 package entity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -110,7 +112,7 @@ public class Catalogue implements I_Catalogue {
 			montantTotal += produit.getPrixStockTTC();
 		}
 		
-		return montantTotal;
+		return (new BigDecimal(montantTotal)).setScale(2, RoundingMode.CEILING).doubleValue();
 	}
 
 	@Override
