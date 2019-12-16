@@ -1,5 +1,8 @@
 package entity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Produit implements I_Produit{
 
 	private int quantiteStock; 
@@ -52,12 +55,14 @@ public class Produit implements I_Produit{
 
 	@Override
 	public double getPrixUnitaireTTC() {
-		return this.prixUnitiareHT+(this.prixUnitiareHT/100*Produit.getTauxTVA());
+		double prix = this.prixUnitiareHT+(this.prixUnitiareHT/100)*(Produit.getTauxTVA()*100);
+		return prix;
 	}
 
 	@Override
 	public double getPrixStockTTC() {
-		return this.quantiteStock*this.getPrixStockTTC();
+			double prix = this.quantiteStock*this.getPrixUnitaireTTC();
+			return prix;
 	}
 
 }
