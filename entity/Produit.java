@@ -22,7 +22,7 @@ public class Produit implements I_Produit{
 	@Override
 	public boolean ajouter(int qteAchetee) {
 		if(qteAchetee<=0) {
-			return false; 
+			return false; fail("A vous d'écrire le code de ce test");
 		}
 		this.quantiteStock+=qteAchetee;
 		return true;
@@ -72,7 +72,7 @@ public class Produit implements I_Produit{
 
 	@Override
 	public String toString() {
-		return this.nom+" - prix HT : "+this.prixUnitiareHT+" € - prix TTC : "+this.getPrixUnitaireTTC()+" € - quantité en stock : "+this.quantiteStock;
+		return this.nom+" - prix HT : "+this.prixUnitiareHT+" € - prix TTC : "+this.getPrixUnitaireTTC()+" € - quantité en stock : "+this.quantiteStock+"\n";
 	}
 	
 	
