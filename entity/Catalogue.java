@@ -105,7 +105,7 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public double getMontantTotalTTC() {
-		int montantTotal = 0;
+		double montantTotal = 0;
 		for (I_Produit produit : lesProduits) {
 			montantTotal += produit.getPrixStockTTC();
 		}
