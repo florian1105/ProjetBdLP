@@ -17,6 +17,16 @@ public class Catalogue implements I_Catalogue {
 	public Catalogue() {
 		this.lesProduits = new ArrayList<I_Produit>();
 	}
+	
+	public String toString() {
+		String etatStock = "";
+		for (I_Produit produit : lesProduits) {
+			etatStock += produit.toString();
+		}
+		etatStock += "\n Montant total TTC du stock : " + this.getMontantTotalTTC() + " €";
+		
+		return etatStock;
+	}
 
 	@Override
 	public boolean addProduit(I_Produit produit) {
