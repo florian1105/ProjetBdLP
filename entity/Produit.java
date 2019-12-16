@@ -1,7 +1,6 @@
 package entity;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import exceptions.*;
 
 public class Produit implements I_Produit{
 
@@ -11,7 +10,10 @@ public class Produit implements I_Produit{
 	private static double tauxTVA =0.2;
 	
 	
-	public Produit(String nom, double prixU, int quantite) {
+	public Produit(String nom, double prixU, int quantite) throws ExceptionProduitIllegal {
+		if(prixU<=0 || quantite < 0 || nom== null) {
+			throw new ExceptionProduitIllegal();
+		}
 		this.nom=nom;
 		this.prixUnitiareHT=prixU;
 		this.quantiteStock=quantite;
