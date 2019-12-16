@@ -33,6 +33,10 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public boolean addProduit(String nom, double prix, int qte) {
+		if (this.contient(nom.trim())) {
+			return false;
+		}
+		
 		I_Produit produit;
 		try {
 			produit = new Produit(nom, prix, qte);
@@ -45,6 +49,10 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public int addProduits(List<I_Produit> l) {
+		if (l == null) {
+			return 0;
+		}
+		
 		int nbAdded = 0;
 		for (I_Produit produit : l) {
 			if (this.addProduit(produit)) {
