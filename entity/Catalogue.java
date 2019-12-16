@@ -49,7 +49,7 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public int addProduits(List<I_Produit> l) {
-		if (l == null) {
+		if (l == null || l.isEmpty()) {
 			return 0;
 		}
 		

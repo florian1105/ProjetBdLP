@@ -14,13 +14,16 @@ public class Produit implements I_Produit{
 		if(prixU<=0 || quantite < 0 || nom== null) {
 			throw new ExceptionProduitIllegal();
 		}
-		this.nom=nom;
+		this.nom=nom.trim();
 		this.prixUnitiareHT=prixU;
 		this.quantiteStock=quantite;
 	}
 
 	@Override
 	public boolean ajouter(int qteAchetee) {
+		if(qteAchetee<=0) {
+			return false; 
+		}
 		this.quantiteStock+=qteAchetee;
 		return true;
 	}
