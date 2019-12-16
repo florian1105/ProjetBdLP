@@ -25,7 +25,7 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public boolean addProduit(String nom, double prix, int qte) {
-		return this.addProduit(new Produits(nom, prix, qte));
+		return this.addProduit(new Produit(nom, prix, qte));
 	}
 
 	@Override

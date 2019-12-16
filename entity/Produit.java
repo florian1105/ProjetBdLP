@@ -1,6 +1,6 @@
 package entity;
 
-public class Produits implements I_Produit{
+public class Produit implements I_Produit{
 
 	private int quantiteStock; 
 	private String nom; 
@@ -8,7 +8,7 @@ public class Produits implements I_Produit{
 	private static double tauxTVA =0.2;
 	
 	
-	public Produits(String nom, double prixU, int quantite) {
+	public Produit(String nom, double prixU, int quantite) {
 		this.nom=nom;
 		this.prixUnitiareHT=prixU;
 		this.quantiteStock=quantite;
@@ -52,7 +52,7 @@ public class Produits implements I_Produit{
 
 	@Override
 	public double getPrixUnitaireTTC() {
-		return this.prixUnitiareHT+(this.prixUnitiareHT/100*Produits.getTauxTVA());
+		return this.prixUnitiareHT+(this.prixUnitiareHT/100*Produit.getTauxTVA());
 	}
 
 	@Override
