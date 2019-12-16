@@ -6,11 +6,11 @@ import java.util.ListIterator;
 
 import exceptions.ExceptionProduitNotFound;
 
-public class Catalogues implements I_Catalogue {
+public class Catalogue implements I_Catalogue {
 	
 	private List<I_Produit> lesProduits;
 
-	public Catalogues() {
+	public Catalogue() {
 		this.lesProduits = new ArrayList<I_Produit>();
 	}
 
