@@ -23,7 +23,7 @@ public class Catalogue implements I_Catalogue {
 		for (I_Produit produit : lesProduits) {
 			etatStock += produit.toString();
 		}
-		etatStock += "\n Montant total TTC du stock : " + this.getMontantTotalTTC() + " €";
+		etatStock += "\n Montant total TTC du stock : " + Double.toString(this.getMontantTotalTTC()).replace(".", ",") + " €";
 		
 		return etatStock;
 	}
