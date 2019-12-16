@@ -1,5 +1,9 @@
 package entity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import exceptions.*;
 
 public class Produit implements I_Produit{
@@ -22,7 +26,7 @@ public class Produit implements I_Produit{
 	@Override
 	public boolean ajouter(int qteAchetee) {
 		if(qteAchetee<=0) {
-			return false; fail("A vous d'écrire le code de ce test");
+			return false; 
 		}
 		this.quantiteStock+=qteAchetee;
 		return true;
@@ -72,7 +76,11 @@ public class Produit implements I_Produit{
 
 	@Override
 	public String toString() {
-		return this.nom+" - prix HT : "+this.prixUnitiareHT+" € - prix TTC : "+this.getPrixUnitaireTTC()+" € - quantité en stock : "+this.quantiteStock+"\n";
+		DecimalFormat df = new DecimalFormat("0.00"); 
+		String pU =  df.format(this.getPrixUnitaireHT());
+		String pT = df.format(this.getPrixUnitaireTTC());
+		String s = this.nom+" - prix HT : "+pU+" € - prix TTC : "+pT+" € - quantité en stock : "+this.quantiteStock+"\n";
+		return s.replace(".", ",");
 	}
 	
 	
