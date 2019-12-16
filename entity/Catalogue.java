@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
+import exceptions.ExceptionProduitIllegal;
 import exceptions.ExceptionProduitNotFound;
 
 public class Catalogue implements I_Catalogue {
@@ -32,11 +33,14 @@ public class Catalogue implements I_Catalogue {
 
 	@Override
 	public boolean addProduit(String nom, double prix, int qte) {
-		if (nom == null || prix <= 0 || qte < 0) {
+		I_Produit produit;
+		try {
+			produit = new Produit(nom, prix, qte);
+		} catch (ExceptionProduitIllegal e) {
 			return false;
 		}
 		
-		return this.addProduit(new Produit(nom, prix, qte));
+		return this.addProduit(produit);
 	}
 
 	@Override
