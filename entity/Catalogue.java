@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -96,6 +97,8 @@ public class Catalogue implements I_Catalogue {
 		for (int i = 0; i < this.lesProduits.size(); i++) {
 			nomProduits[i] = this.lesProduits.get(i).getNom();
 		}
+		
+		Arrays.sort(nomProduits);
 		
 		return nomProduits;
 	}
