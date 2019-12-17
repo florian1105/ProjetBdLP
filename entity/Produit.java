@@ -18,7 +18,8 @@ public class Produit implements I_Produit{
 		if(prixU<=0 || quantite < 0 || nom== null) {
 			throw new ExceptionProduitIllegal();
 		}
-		this.nom=nom.trim();
+		
+		this.nom=nom.trim().replace("	", " ");
 		this.prixUnitiareHT=prixU;
 		this.quantiteStock=quantite;
 	}

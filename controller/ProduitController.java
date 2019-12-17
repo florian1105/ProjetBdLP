@@ -10,7 +10,7 @@ public class ProduitController {
 		
 	}
 
-	public static void add() {
+	public static void add(String nom, double d, int i) {
 		
 		
 	}

@@ -51,7 +51,7 @@ public class FenetreNouveauProduit extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		this.dispose();
-		ProduitController.add();
+		ProduitController.add(txtNom.getText(),Double.parseDouble(txtPrixHT.getText()),Integer.parseInt(txtQte.getText()));
 	}
 
 }
