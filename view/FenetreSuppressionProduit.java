@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import controller.ProduitController;
+import entity.I_Produit;
 
 public class FenetreSuppressionProduit extends JFrame implements ActionListener {
 
@@ -31,8 +32,8 @@ public class FenetreSuppressionProduit extends JFrame implements ActionListener 
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		ProduitController.remove((String) combo.getSelectedItem());
 		this.dispose();
-		ProduitController.remove();
 	}
 
 }

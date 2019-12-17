@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import controller.ProduitController;
+import entity.I_Catalogue;
 
 public class FenetreNouveauProduit extends JFrame implements ActionListener {
 
@@ -50,8 +51,8 @@ public class FenetreNouveauProduit extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		ProduitController.addNew(txtNom.getText(),Double.parseDouble(txtPrixHT.getText()),Integer.parseInt(txtQte.getText()));
 		this.dispose();
-		ProduitController.add(txtNom.getText(),Double.parseDouble(txtPrixHT.getText()),Integer.parseInt(txtQte.getText()));
 	}
 
 }
