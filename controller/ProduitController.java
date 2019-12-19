@@ -20,8 +20,8 @@ public class ProduitController {
 
 	public static boolean addNew(String nom, String prixU, String quantite) {
 		try {
-			I_Produit produit = new Produit(nom,Double.parseDouble(prixU),Integer.parseInt(quantite));
-			TempPopup.ShowTempPopup(quantite+"articles "+nom+" à bien été crée");
+			I_Produit produit = new Produit(nom,Double.parseDouble(prixU.replace(",", ".")),Integer.parseInt(quantite));
+			TempPopup.ShowTempPopup(quantite+" articles "+nom+" à bien été crée");
 			return CatalogueController.add(produit);
 		} catch (ExceptionNomProduitIllegal e) {
 			TempPopup.ShowTempPopup("Nom invalide");
