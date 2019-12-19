@@ -33,31 +33,28 @@ public class ProduitDAL {
 					ResultSet.CONCUR_READ_ONLY
 					);
 		} catch (ClassNotFoundException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	
 	public void closeConnection() {
 		try {
-			this.rs.close();
-			this.st.close();
 			this.cn.close();
 		} catch (SQLException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	
 	public void create(I_Produit produit) {
 		try {
-			CallableStatement cst = cn.prepareCall("{ CALL addProduit(?, ?, ?); }");
+			CallableStatement cst = cn.prepareCall("{ CALL addProduit(?, ?, ?) }");
 			cst.setString(1, produit.getNom());
 			cst.setDouble(2, produit.getPrixUnitaireHT());
 			cst.setInt(3, produit.getQuantite());
 			cst.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 	}
@@ -66,7 +63,7 @@ public class ProduitDAL {
 		I_Produit produit = null;
 		
 		try {
-			PreparedStatement pst = cn.prepareStatement("{ SELECT * FROM Produits WHERE nomProduit = ?; }");
+			PreparedStatement pst = cn.prepareStatement("{ SELECT * FROM Produits WHERE nomProduit = ? }");
 			pst.setString(1, nom);
 			this.rs = pst.executeQuery();
 			if (!this.rs.next()) {
@@ -74,12 +71,10 @@ public class ProduitDAL {
 			}
 			produit = new Produit(this.rs.getString(2), this.rs.getDouble(3), this.rs.getInt(4));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExceptionProduitNotFound e) {
-			// TODO
+			e.printStackTrace();
 		} catch (ExceptionNomProduitIllegal | ExceptionPrixProduitIllegal | ExceptionQuantiteProduitIllegal e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -90,29 +85,27 @@ public class ProduitDAL {
 		List<I_Produit> produits = new ArrayList<I_Produit>();
 		
 		try {
-			this.rs = this.st.executeQuery("SELECT * FROM Produits ORDER BY nomProduit;");
+			this.rs = this.st.executeQuery("SELECT * FROM Produits ORDER BY nomProduit");
 			while (this.rs.next()) {
 				I_Produit produit = new Produit(this.rs.getString(2), this.rs.getDouble(3), this.rs.getInt(4));
 				produits.add(produit);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExceptionNomProduitIllegal | ExceptionPrixProduitIllegal | ExceptionQuantiteProduitIllegal e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return produits;
 	}
 	
-	public void remove(I_Produit produit) {
+	public void remove(String nomProduit) {
 		try {
-			CallableStatement cst = cn.prepareCall("{ CALL removeProduit(?); }");
-			cst.setString(1, produit.getNom());
+			CallableStatement cst = cn.prepareCall("{ CALL removeProduit(?) }");
+			cst.setString(1, nomProduit);
 			cst.execute();
 		} catch (SQLException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 }
