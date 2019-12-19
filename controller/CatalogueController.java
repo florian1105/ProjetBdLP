@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import entity.Catalogue;
 import entity.I_Catalogue;
 import entity.I_Produit;
@@ -10,6 +12,10 @@ public class CatalogueController {
 
 	public CatalogueController() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public static void hydrate(List<I_Produit> produits) {
+		cat.addProduits(produits);
 	}
 
 	public static boolean add(I_Produit produit) {

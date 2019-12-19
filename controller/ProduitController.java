@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.List;
+
+import dal.ProduitDAL;
 import entity.I_Produit;
 import entity.Produit;
 import exceptions.ExceptionNomProduitIllegal;
@@ -8,12 +11,22 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 import view.TempPopup;
 
 public class ProduitController {
+	private static ProduitDAL pdal = new ProduitDAL();
 
 	public ProduitController() {
 
 	}
 
+	public static ProduitDAL getPdal() {
+		return pdal;
+	}
+	
+	public static void hydrate() {
+		CatalogueController.hydrate(pdal.findAll());
+	}
+
 	public static boolean remove(String nom) {
+		pdal.remove(nom);
 		TempPopup.ShowTempPopup("L'article "+nom+" à bien été supprimé");
 		return CatalogueController.remove(nom);
 	}
@@ -21,8 +34,12 @@ public class ProduitController {
 	public static boolean addNew(String nom, String prixU, String quantite) {
 		try {
 			I_Produit produit = new Produit(nom,Double.parseDouble(prixU.replace(",", ".")),Integer.parseInt(quantite));
-			TempPopup.ShowTempPopup(quantite+" articles "+nom+" à bien été crée");
-			return CatalogueController.add(produit);
+			if (!CatalogueController.add(produit)) {
+				throw new ExceptionNomProduitIllegal();
+			}
+			pdal.create(produit);
+			TempPopup.ShowTempPopup(quantite+" articles "+nom+" à bien été crée");				
+			return true;
 		} catch (ExceptionNomProduitIllegal e) {
 			TempPopup.ShowTempPopup("Nom invalide");
 			return false;

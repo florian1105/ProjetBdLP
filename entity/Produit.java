@@ -13,7 +13,7 @@ public class Produit implements I_Produit{
 	
 	
 	public Produit(String nom, double prixU, int quantite) throws ExceptionNomProduitIllegal, ExceptionPrixProduitIllegal, ExceptionQuantiteProduitIllegal {
-		if( nom == null) {
+		if( nom == null || nom.contentEquals("")) {
 			throw new ExceptionNomProduitIllegal();
 		}else if (prixU<=0 ) {
 			throw new ExceptionPrixProduitIllegal();
