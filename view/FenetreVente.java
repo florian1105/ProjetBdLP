@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import controller.ProduitController;
+import controller.TransactionController;
+
 public class FenetreVente extends JFrame implements ActionListener {
 
 	private JButton btVente;
@@ -32,7 +35,11 @@ public class FenetreVente extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		this.dispose();
+		if(TransactionController.vente((String) combo.getSelectedItem(),Integer.parseInt(txtQuantite.getText()))) {
+			this.dispose();
+		}
+			
+		
 	}
 
 }
