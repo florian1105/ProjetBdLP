@@ -2,7 +2,9 @@ package controller;
 
 import entity.I_Produit;
 import entity.Produit;
-import exceptions.ExceptionProduitIllegal;
+import exceptions.ExceptionNomProduitIllegal;
+import exceptions.ExceptionPrixProduitIllegal;
+import exceptions.ExceptionQuantiteProduitIllegal;
 import view.TempPopup;
 
 public class ProduitController {
@@ -21,8 +23,17 @@ public class ProduitController {
 			I_Produit produit = new Produit(nom,Double.parseDouble(prixU),Integer.parseInt(quantite));
 			TempPopup.ShowTempPopup(quantite+"articles "+nom+" à bien été crée");
 			return CatalogueController.add(produit);
-		} catch (ExceptionProduitIllegal | NumberFormatException e) {
-			TempPopup.ShowTempPopup("Article invalide");
+		} catch (ExceptionNomProduitIllegal e) {
+			TempPopup.ShowTempPopup("Nom invalide");
+			return false;
+		} catch (ExceptionPrixProduitIllegal e) {
+			TempPopup.ShowTempPopup("Prix invalide");
+			return false;
+		} catch (ExceptionQuantiteProduitIllegal e) {
+			TempPopup.ShowTempPopup("Quantite invalide");
+			return false;
+		}catch (NumberFormatException e) {
+			TempPopup.ShowTempPopup("Veuillez renseigner tous les champs");
 			return false;
 		}
 

@@ -8,8 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
-import exceptions.ExceptionProduitIllegal;
+import exceptions.ExceptionNomProduitIllegal;
+import exceptions.ExceptionPrixProduitIllegal;
 import exceptions.ExceptionProduitNotFound;
+import exceptions.ExceptionQuantiteProduitIllegal;
 
 public class Catalogue implements I_Catalogue {
 	
@@ -52,7 +54,7 @@ public class Catalogue implements I_Catalogue {
 		I_Produit produit;
 		try {
 			produit = new Produit(nom, prix, qte);
-		} catch (ExceptionProduitIllegal e) {
+		} catch (ExceptionNomProduitIllegal | ExceptionPrixProduitIllegal | ExceptionQuantiteProduitIllegal e) {
 			return false;
 		}
 		

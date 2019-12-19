@@ -1,7 +1,5 @@
 package entity;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import exceptions.*;
@@ -14,9 +12,13 @@ public class Produit implements I_Produit{
 	private static double tauxTVA =0.2;
 	
 	
-	public Produit(String nom, double prixU, int quantite) throws ExceptionProduitIllegal {
-		if(prixU<=0 || quantite < 0 || nom== null) {
-			throw new ExceptionProduitIllegal();
+	public Produit(String nom, double prixU, int quantite) throws ExceptionNomProduitIllegal, ExceptionPrixProduitIllegal, ExceptionQuantiteProduitIllegal {
+		if( nom == null) {
+			throw new ExceptionNomProduitIllegal();
+		}else if (prixU<=0 ) {
+			throw new ExceptionPrixProduitIllegal();
+		}else if(quantite < 0) {
+			throw new ExceptionQuantiteProduitIllegal();
 		}
 		
 		this.nom=nom.trim().replace("	", " ");
