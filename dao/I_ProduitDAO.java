@@ -1,10 +1,10 @@
-package dal;
+package dao;
 
 import java.util.List;
 
 import entity.I_Produit;
 
-public interface I_ProduitDAL {
+public interface I_ProduitDAO {
 
 	void openConnection();
 

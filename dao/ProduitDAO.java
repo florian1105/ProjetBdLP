@@ -1,4 +1,4 @@
-package dal;
+package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,12 +11,12 @@ import exceptions.ExceptionPrixProduitIllegal;
 import exceptions.ExceptionProduitNotFound;
 import exceptions.ExceptionQuantiteProduitIllegal;
 
-public class ProduitDAL implements I_ProduitDAL {
+public class ProduitDAO implements I_ProduitDAO {
 	private Connection cn;
 	private Statement st;
 	private ResultSet rs;
 
-	public ProduitDAL() {
+	public ProduitDAO() {
 		this.openConnection();
 	}
 	

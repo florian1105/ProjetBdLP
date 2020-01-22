@@ -2,8 +2,8 @@ package controller;
 
 import java.util.List;
 
-import dal.I_ProduitDAL;
-import dal.ProduitDAL;
+import dao.I_ProduitDAO;
+import dao.ProduitDAO;
 import entity.I_Produit;
 import entity.Produit;
 import exceptions.ExceptionNomProduitIllegal;
@@ -12,13 +12,13 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 import view.TempPopup;
 
 public class ProduitController {
-	private static I_ProduitDAL pdal = new ProduitDAL();
+	private static I_ProduitDAO pdal = new ProduitDAO();
 
 	public ProduitController() {
 
 	}
 
-	public static I_ProduitDAL getPdal() {
+	public static I_ProduitDAO getPdal() {
 		return pdal;
 	}
 	

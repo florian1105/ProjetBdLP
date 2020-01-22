@@ -1,15 +1,15 @@
-package dal;
+package dao;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.text.Document;
-import javax.swing.text.Element;
+import javax.xml.bind.Element;
 
 import org.jdom.*;
 import org.jdom.input.*;
 import org.jdom.output.*;
+import org.w3c.dom.Document;
 
 import entity.I_Produit;
 
