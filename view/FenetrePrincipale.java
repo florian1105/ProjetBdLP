@@ -96,14 +96,14 @@ public class FenetrePrincipale extends JFrame implements ActionListener,
 			new FenetreVente(CatalogueController.getCatalogue().getNomProduits());
 		if (e.getSource() == btQuitter){
 			System.out.println("Au revoir");
-			ProduitController.getPdal().closeConnection();
+			ProduitController.getProduitDAO().closeConnection();
 			System.exit(0);
 		}	
 	}
 
 	public void windowClosing(WindowEvent arg0) {
 		System.out.println("Au revoir");
-		ProduitController.getPdal().closeConnection();
+		ProduitController.getProduitDAO().closeConnection();
 		System.exit(0);
 	}
 

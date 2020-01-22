@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.List;
-
 import dao.I_ProduitDAO;
 import dao.ProduitDAO;
 import entity.I_Produit;
@@ -12,22 +10,22 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 import view.TempPopup;
 
 public class ProduitController {
-	private static I_ProduitDAO pdal = new ProduitDAO();
+	private static I_ProduitDAO produitDAO = new ProduitDAO();
 
 	public ProduitController() {
 
 	}
 
-	public static I_ProduitDAO getPdal() {
-		return pdal;
+	public static I_ProduitDAO getProduitDAO() {
+		return produitDAO;
 	}
 	
 	public static void hydrate() {
-		CatalogueController.hydrate(pdal.findAll());
+		CatalogueController.hydrate(produitDAO.findAll());
 	}
 
 	public static boolean remove(String nom) {
-		pdal.remove(nom);
+		produitDAO.remove(nom);
 		TempPopup.ShowTempPopup("L'article "+nom+" à bien été supprimé");
 		return CatalogueController.remove(nom);
 	}
@@ -38,7 +36,7 @@ public class ProduitController {
 			if (!CatalogueController.add(produit)) {
 				throw new ExceptionNomProduitIllegal();
 			}
-			pdal.create(produit);
+			produitDAO.create(produit);
 			TempPopup.ShowTempPopup(quantite+" articles "+nom+" à bien été crée");				
 			return true;
 		} catch (ExceptionNomProduitIllegal e) {
