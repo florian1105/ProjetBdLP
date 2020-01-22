@@ -11,7 +11,7 @@ import exceptions.ExceptionPrixProduitIllegal;
 import exceptions.ExceptionProduitNotFound;
 import exceptions.ExceptionQuantiteProduitIllegal;
 
-public class ProduitDAL {
+public class ProduitDAL implements I_ProduitDAL {
 	private Connection cn;
 	private Statement st;
 	private ResultSet rs;
@@ -20,6 +20,7 @@ public class ProduitDAL {
 		this.openConnection();
 	}
 	
+	@Override
 	public void openConnection() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -39,6 +40,7 @@ public class ProduitDAL {
 		}
 	}
 	
+	@Override
 	public void closeConnection() {
 		try {
 			this.cn.close();
@@ -47,6 +49,7 @@ public class ProduitDAL {
 		}
 	}
 	
+	@Override
 	public void create(I_Produit produit) {
 		try {
 			CallableStatement cst = cn.prepareCall("{ CALL addProduit(?, ?, ?) }");
@@ -59,6 +62,7 @@ public class ProduitDAL {
 		}		
 	}
 	
+	@Override
 	public I_Produit find(String nom) {
 		I_Produit produit = null;
 		
@@ -81,6 +85,7 @@ public class ProduitDAL {
 		return produit;
 	}
 	
+	@Override
 	public List<I_Produit> findAll() {
 		List<I_Produit> produits = new ArrayList<I_Produit>();
 		
@@ -99,6 +104,7 @@ public class ProduitDAL {
 		return produits;
 	}
 	
+	@Override
 	public void remove(String nomProduit) {
 		try {
 			CallableStatement cst = cn.prepareCall("{ CALL removeProduit(?) }");
