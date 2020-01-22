@@ -4,14 +4,16 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.Element;
 
 import org.jdom.*;
 import org.jdom.input.*;
 import org.jdom.output.*;
-import org.w3c.dom.Document;
 
 import entity.I_Produit;
+import entity.Produit;
+import exceptions.ExceptionNomProduitIllegal;
+import exceptions.ExceptionPrixProduitIllegal;
+import exceptions.ExceptionQuantiteProduitIllegal;
 
 
 public class ProduitDAO_XML {
@@ -73,7 +75,7 @@ public class ProduitDAO_XML {
 		}
 	}
 
-	public I_Produit lire(String nom) {
+	public I_Produit lire(String nom) throws NumberFormatException, ExceptionNomProduitIllegal, ExceptionPrixProduitIllegal, ExceptionQuantiteProduitIllegal {
 		Element e = chercheProduit(nom);
 		if (e != null)
 			return new Produit(e.getAttributeValue("nom"), Double.parseDouble(e.getChildText("prixHT")), Integer.parseInt(e.getChildText("quantite")));
