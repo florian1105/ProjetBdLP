@@ -10,6 +10,7 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 public class ProduitDAO_XML_adapteur implements I_ProduitDAO {
 	
 	public ProduitDAO_XML daoXml ; 
+	
 	public ProduitDAO_XML_adapteur() {
 		daoXml = new ProduitDAO_XML();
 	}
