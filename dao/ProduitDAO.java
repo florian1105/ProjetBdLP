@@ -25,7 +25,7 @@ public class ProduitDAO implements I_ProduitDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			this.cn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@gloin:1521:iut",
+					"jdbc:oracle:thin:@162.38.222.149:1521:iut",
 					"grauwinm",
 					"1110017777M"
 					);
