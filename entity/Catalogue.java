@@ -82,13 +82,8 @@ public class Catalogue implements I_Catalogue {
 		if (!this.contient(nom)) {
 			return false;
 		}
-		
-		ListIterator<I_Produit> it = this.lesProduits.listIterator();
-		while (it.hasNext()) {
-			if (it.next().getNom().equals(nom)) {
-				it.remove();
-			}
-		}
+
+		this.lesProduits.removeIf(produit -> produit.getNom().equals(nom));
 		
 		return true;
 	}
