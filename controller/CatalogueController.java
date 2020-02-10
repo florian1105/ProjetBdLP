@@ -5,6 +5,7 @@ import java.util.List;
 import entity.Catalogue;
 import entity.I_Catalogue;
 import entity.I_Produit;
+import view.FenetrePrincipale;
 
 public class CatalogueController {
 
@@ -40,6 +41,10 @@ public class CatalogueController {
 	public static boolean remove(String nom, int quantite) {
 		return cat.vendreStock(nom,quantite);
 
+	}
+	
+	public static void main (String[] args) {
+		FenetrePrincipale f = new FenetrePrincipale();
 	}
 
 }
