@@ -16,5 +16,6 @@ public interface I_Catalogue {
 	public abstract void clear();
 	public abstract String getNom();
 	public abstract String getNbProduit();
+	public abstract String nbProdInitial();
 
 }

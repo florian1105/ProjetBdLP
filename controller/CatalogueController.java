@@ -12,7 +12,7 @@ public class CatalogueController {
 	public static I_Catalogue cat;
 
 	public CatalogueController(String nom) {
-		cat= new Catalogue(nom);
+		cat = new Catalogue(nom,"0");
 	}
 	
 	public static void hydrate(List<I_Produit> produits) {

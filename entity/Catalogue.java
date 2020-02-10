@@ -16,17 +16,23 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 public class Catalogue implements I_Catalogue {
 	
 	private List<I_Produit> lesProduits;
-	public String nom ; 
+	private String nom ; 
+	public String nbProdInitial ; 
 	
 
-	public Catalogue(String nom) {
+	public Catalogue(String nom, String nbProdInitial) {
 		this.nom=nom;
+		this.nbProdInitial=nbProdInitial;
 		this.lesProduits = new ArrayList<I_Produit>();
 	}
 	
 	@Override
 	public String getNom() {
 		return this.nom;
+	}
+	
+	public String nbProdInitial() {
+		return this.nbProdInitial;
 	}
 	
 	@Override

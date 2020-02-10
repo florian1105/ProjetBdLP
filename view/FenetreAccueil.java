@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import controller.SelectionController;
+
 public class FenetreAccueil extends JFrame implements ActionListener {
 
 	private JButton btAjouter, btSupprimer, btSelectionner;
@@ -12,7 +14,7 @@ public class FenetreAccueil extends JFrame implements ActionListener {
 	private JComboBox cmbSupprimer, cmbSelectionner;
 	private TextArea taDetailCatalogues;
 
-	public FenetreAccueil(String[] tabNomCat, String[] tabNomCatEtProd) {
+	public FenetreAccueil(String[] tabNomCat, String[] tabNomCatEtProd, SelectionController ctrl) {
 		setTitle("Catalogues");
 		setBounds(500, 500, 200, 125);
 		Container contentPane = getContentPane();
@@ -91,7 +93,9 @@ public class FenetreAccueil extends JFrame implements ActionListener {
 			if (!texteAjout.equals(""))
 			{
 				System.out.println("ajouter le catalogue "+texteAjout);
+				SelectionController.addCatalogue(texteAjout);
 				txtAjouter.setText(null);
+				
 			}
 		}
 		if (e.getSource() == btSupprimer)
@@ -99,6 +103,7 @@ public class FenetreAccueil extends JFrame implements ActionListener {
 			String texteSupprime = (String)cmbSupprimer.getSelectedItem();
 			if (texteSupprime != null)
 				System.out.println("supprime catalogue "+texteSupprime);
+				SelectionController.remove(texteSupprime);
 		}
 		if (e.getSource() == btSelectionner)
 		{
@@ -106,6 +111,7 @@ public class FenetreAccueil extends JFrame implements ActionListener {
 			if (texteSelection != null) 
 			{
 				System.out.println("selectionne catalogue "+texteSelection);
+				SelectionController.changeCatalogue(texteSelection);
 				this.dispose();
 			}
 		}	

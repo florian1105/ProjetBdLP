@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -60,10 +61,22 @@ public class CatalogueDAO implements I_CatalogueDAO {
 
 	@Override
 	public void create(I_Catalogue catalogue) {
-		// TODO Auto-generated method stub
+		try {
+			CallableStatement cst = cn.prepareCall("{ CALL addCatalogue(?) }");
+			cst.setString(1, catalogue.getNom());
+			cst.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
 
 	}
-
+	
+	@Override
+	public List<I_Catalogue> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public I_Catalogue find(String nom) {
 		return null ; 
@@ -71,14 +84,14 @@ public class CatalogueDAO implements I_CatalogueDAO {
 	}
 
 	@Override
-	public String[] findAllInfos() {
-		String[] catalogues;
+	public List<I_Catalogue> findAllInfos() {
+		List<I_Catalogue> catalogues = new ArrayList<I_Catalogue>();
 		try {
 			this.rs = this.st.executeQuery("SELECT nomCatalogue, COUNT(*) FROM CatalogueProduit"
 					+ " GROUP BY nomCatalogue");
 			while (this.rs.next()) {
 				I_Catalogue catalogue = new Catalogue(this.rs.getString(2),this.rs.getString(3));
-
+				catalogues.add(catalogue);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,8 +102,16 @@ public class CatalogueDAO implements I_CatalogueDAO {
 
 	@Override
 	public void remove(String nomCatalogue) {
-		// TODO Auto-generated method stub
+		try {
+			CallableStatement cst = cn.prepareCall("{ CALL removeCatalogue(?) }");
+			cst.setString(1, nomCatalogue);
+			cst.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
+
+	
 
 }
