@@ -18,4 +18,6 @@ public interface I_ProduitDAO {
 
 	void remove(String nomProduit);
 
+	void updateQuantite(I_Produit produit);
+
 }

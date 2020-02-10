@@ -2,7 +2,6 @@ package controller;
 
 import dao.DAOFactory;
 import dao.I_ProduitDAO;
-import dao.ProduitDAO;
 import entity.I_Produit;
 import entity.Produit;
 import exceptions.ExceptionNomProduitIllegal;

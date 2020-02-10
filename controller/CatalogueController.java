@@ -21,7 +21,6 @@ public class CatalogueController {
 
 	public static boolean add(I_Produit produit) {
 		return cat.addProduit(produit);
-
 	}
 
 	public static boolean add(String nomProduit,int quantite) {

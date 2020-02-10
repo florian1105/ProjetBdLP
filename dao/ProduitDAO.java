@@ -114,4 +114,15 @@ public class ProduitDAO implements I_ProduitDAO {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void updateQuantite(I_Produit produit) {
+		try {
+			CallableStatement cst = cn.prepareCall("UPDATE Produits SET quantiteStockProduit = ? WHERE nomProduit = ?");
+			cst.setInt(1, produit.getQuantite());
+			cst.setString(2, produit.getNom());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
