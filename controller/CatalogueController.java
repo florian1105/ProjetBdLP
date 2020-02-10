@@ -9,10 +9,10 @@ import view.FenetrePrincipale;
 
 public class CatalogueController {
 
-	public static I_Catalogue cat = new Catalogue();
+	public static I_Catalogue cat;
 
-	public CatalogueController() {
-		// TODO Auto-generated constructor stub
+	public CatalogueController(String nom) {
+		cat= new Catalogue(nom);
 	}
 	
 	public static void hydrate(List<I_Produit> produits) {

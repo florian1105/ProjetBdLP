@@ -16,9 +16,22 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 public class Catalogue implements I_Catalogue {
 	
 	private List<I_Produit> lesProduits;
+	public String nom ; 
+	
 
-	public Catalogue() {
+	public Catalogue(String nom) {
+		this.nom=nom;
 		this.lesProduits = new ArrayList<I_Produit>();
+	}
+	
+	@Override
+	public String getNom() {
+		return this.nom;
+	}
+	
+	@Override
+	public String getNbProduit() {
+		return String.valueOf(this.lesProduits.size());
 	}
 	
 	public String toString() {
@@ -184,4 +197,6 @@ public class Catalogue implements I_Catalogue {
 		
 		return existe;
 	}
+
+	
 }
