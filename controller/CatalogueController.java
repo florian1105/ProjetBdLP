@@ -5,6 +5,7 @@ import java.util.List;
 import entity.Catalogue;
 import entity.I_Catalogue;
 import entity.I_Produit;
+import exceptions.ExceptionProduitNotFound;
 import view.FenetrePrincipale;
 
 public class CatalogueController {
@@ -25,7 +26,17 @@ public class CatalogueController {
 	}
 
 	public static boolean add(String nomProduit,int quantite) {
-		return cat.acheterStock(nomProduit, quantite);
+		try {
+			if (cat.acheterStock(nomProduit, quantite)) {
+				return ProduitController.maj(cat.getProduitByName(nomProduit));
+			}else {
+				return false ; 
+			}
+		} catch (ExceptionProduitNotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 
 	}
 
@@ -35,11 +46,21 @@ public class CatalogueController {
 
 	public static boolean remove(String nom) {
 		return cat.removeProduit(nom);
-
 	}
 
 	public static boolean remove(String nom, int quantite) {
-		return cat.vendreStock(nom,quantite);
+		try {
+			if (cat.vendreStock(nom,quantite)) {
+				return ProduitController.maj(cat.getProduitByName(nom));
+			}else {
+				return false ; 
+			}
+		} catch (ExceptionProduitNotFound e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
 
 	}
 	

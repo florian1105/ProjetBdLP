@@ -17,5 +17,7 @@ public interface I_ProduitDAO {
 	List<I_Produit> findAll();
 
 	void remove(String nomProduit);
+	
+	boolean maj(I_Produit produit);
 
 }

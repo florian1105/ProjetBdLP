@@ -114,4 +114,10 @@ public class ProduitDAO implements I_ProduitDAO {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public boolean maj(I_Produit produit) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -155,7 +155,7 @@ public class Catalogue implements I_Catalogue {
 		this.lesProduits.clear();
 	}
 	
-	private I_Produit getProduitByName(String nom) throws ExceptionProduitNotFound {
+	public I_Produit getProduitByName(String nom) throws ExceptionProduitNotFound {
 		I_Produit produit = null;
 		boolean isFound = false;
 		ListIterator<I_Produit> it = this.lesProduits.listIterator();

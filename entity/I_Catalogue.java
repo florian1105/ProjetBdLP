@@ -1,6 +1,8 @@
 package entity;
 
-import java.util.List; 
+import java.util.List;
+
+import exceptions.ExceptionProduitNotFound; 
 
 public interface I_Catalogue {
 
@@ -13,7 +15,7 @@ public interface I_Catalogue {
 	public abstract String[] getNomProduits();
 	public abstract double getMontantTotalTTC();
 	public abstract String toString();
-
+	public I_Produit getProduitByName(String nom) throws ExceptionProduitNotFound;
 	public abstract void clear();
 
 }

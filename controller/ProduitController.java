@@ -11,7 +11,7 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 import view.TempPopup;
 
 public class ProduitController {
-	private static I_ProduitDAO produitDAO = DAOFactory.createDao();
+	private static I_ProduitDAO produitDAO = DAOFactory.createDaoXml();
 
 	public ProduitController() {
 
@@ -54,6 +54,10 @@ public class ProduitController {
 			return false;
 		}
 
+	}
+
+	public static boolean maj(I_Produit produit) {
+			return produitDAO.maj(produit);	
 	}
 
 

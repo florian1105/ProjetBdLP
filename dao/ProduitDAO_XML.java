@@ -17,7 +17,7 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 
 
 public class ProduitDAO_XML {
-	private String uri = "C:/Produits.xml";
+	private String uri = "/home/flo/Bureau/catalogue.xml";
 	private Document doc;
 
 	public ProduitDAO_XML() {
@@ -98,6 +98,7 @@ public class ProduitDAO_XML {
 			}
 		} catch (Exception e) {
 			System.out.println("erreur lireTous tous les produits");
+			e.printStackTrace();
 		}
 		return l;
 	}

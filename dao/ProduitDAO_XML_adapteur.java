@@ -56,4 +56,10 @@ public class ProduitDAO_XML_adapteur implements I_ProduitDAO {
 		
 	}
 
+	@Override
+	public boolean maj(I_Produit produit) {
+		return this.daoXml.maj(produit);
+		
+	}
+
 }
