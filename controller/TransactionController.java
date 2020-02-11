@@ -9,7 +9,7 @@ public class TransactionController {
 	}
 
 	public static boolean vente(String nom, int quantite) {
-		if(ProduitController.removeQuantity(nom, quantite)) {
+		if(CatalogueController.remove(nom,quantite)) {
 			TempPopup.ShowTempPopup(quantite+" articles "+nom+" ont bien été vendus");
 			return true;
 		}else {
@@ -21,7 +21,7 @@ public class TransactionController {
 	}
 
 	public static boolean achat(String nom, int quantite) {
-		if(ProduitController.addQuantity(nom,quantite)) {
+		if(CatalogueController.add(nom,quantite)) {
 			TempPopup.ShowTempPopup(quantite+" articles "+nom+" ont bien été achetés");
 			return true;
 		}else {

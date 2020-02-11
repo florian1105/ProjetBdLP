@@ -10,7 +10,7 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 import view.TempPopup;
 
 public class ProduitController {
-	private static I_ProduitDAO produitDAO = DAOFactory.createDaoXml();
+	private static I_ProduitDAO produitDAO = DAOFactory.createDao();
 
 	public ProduitController() {
 
