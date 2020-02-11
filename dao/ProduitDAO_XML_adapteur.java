@@ -57,9 +57,14 @@ public class ProduitDAO_XML_adapteur implements I_ProduitDAO {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public boolean maj(I_Produit produit) {
 		return this.daoXml.maj(produit);
 		
+=======
+	public void updateQuantite(I_Produit produit) {
+		this.daoXml.maj(produit);
+>>>>>>> a913e1687f641c1638ddf683ec71e2d838b8023f
 	}
 
 }
