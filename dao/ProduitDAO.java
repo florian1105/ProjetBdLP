@@ -116,20 +116,16 @@ public class ProduitDAO implements I_ProduitDAO {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public boolean maj(I_Produit produit) {
-		// TODO Auto-generated method stub
-		return false;
-=======
-	public void updateQuantite(I_Produit produit) {
 		try {
 			CallableStatement cst = cn.prepareCall("UPDATE Produits SET quantiteStockProduit = ? WHERE nomProduit = ?");
 			cst.setInt(1, produit.getQuantite());
 			cst.setString(2, produit.getNom());
 			cst.execute();
+			return true ;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
->>>>>>> a913e1687f641c1638ddf683ec71e2d838b8023f
+		return false;
 	}
 }
