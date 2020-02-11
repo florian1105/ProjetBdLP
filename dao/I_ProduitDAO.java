@@ -20,6 +20,4 @@ public interface I_ProduitDAO {
 	
 	boolean maj(I_Produit produit);
 
-	void updateQuantite(I_Produit produit);
-
 }
