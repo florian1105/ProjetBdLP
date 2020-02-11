@@ -67,7 +67,7 @@ public class ProduitDAO implements I_ProduitDAO {
 		I_Produit produit = null;
 		
 		try {
-			PreparedStatement pst = cn.prepareStatement("{ SELECT * FROM Produits WHERE nomProduit = ? }");
+			PreparedStatement pst = cn.prepareStatement("SELECT * FROM Produits WHERE nomProduit = ?");
 			pst.setString(1, nom);
 			this.rs = pst.executeQuery();
 			if (!this.rs.next()) {
@@ -121,6 +121,7 @@ public class ProduitDAO implements I_ProduitDAO {
 			CallableStatement cst = cn.prepareCall("UPDATE Produits SET quantiteStockProduit = ? WHERE nomProduit = ?");
 			cst.setInt(1, produit.getQuantite());
 			cst.setString(2, produit.getNom());
+			cst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -55,5 +55,29 @@ public class ProduitController {
 
 	}
 
+	public static boolean removeQuantity(String nom, int quantite) {
+		I_Produit produit = produitDAO.find(nom);
+		if (!CatalogueController.remove(produit.getNom(), quantite)) {
+			return false;
+		}
+
+		produit.enlever(quantite);
+		produitDAO.updateQuantite(produit);
+
+		return true;
+	}
+
+	public static boolean addQuantity(String nom, int quantite) {
+		I_Produit produit = produitDAO.find(nom);
+		if (!CatalogueController.add(produit.getNom(), quantite)) {
+			return false;
+		}
+
+		produit.ajouter(quantite);
+		produitDAO.updateQuantite(produit);
+
+		return true;
+	}
+
 
 }
