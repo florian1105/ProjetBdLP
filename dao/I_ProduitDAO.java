@@ -18,4 +18,6 @@ public interface I_ProduitDAO {
 
 	void remove(String nomProduit);
 
+	List<I_Produit> findAllByNomCat(String nomCatalogue);
+
 }

@@ -1,17 +1,16 @@
 package dao;
 
-public class DAOFactory {
-
-	public DAOFactory() {
-		
-	}
+public class DAOFactory extends DAOAbstraiteFactory {
 	
-	public static I_ProduitDAO createDao() {
+	
+	@Override
+	public I_ProduitDAO createDaoProduit() {
 		return new ProduitDAO();
 	}
 	
-	public static I_ProduitDAO createDaoXml() {
-		return new ProduitDAO_XML_adapteur();
+	@Override
+	public I_CatalogueDAO createCatalogueDao() {
+		return new CatalogueDAO();
 	}
 
 }

@@ -2,17 +2,25 @@ package controller;
 
 import java.util.List;
 
+import dao.DAOAbstraiteFactory;
+import dao.DAOFactory;
+import dao.I_CatalogueDAO;
+import dao.I_DAOFactory;
+import dao.I_ProduitDAO;
 import entity.Catalogue;
 import entity.I_Catalogue;
 import entity.I_Produit;
 import view.FenetrePrincipale;
 
 public class CatalogueController {
-
+	private static I_DAOFactory daoFact = DAOAbstraiteFactory.getInstance();
+	private static I_CatalogueDAO catDAO = daoFact.createCatalogueDao();
 	public static I_Catalogue cat;
 
 	public CatalogueController(String nom) {
 		cat = new Catalogue(nom,"0");
+		ProduitController.hydrate(catDAO.findId(nom));
+		FenetrePrincipale f = new FenetrePrincipale();
 	}
 	
 	public static void hydrate(List<I_Produit> produits) {
@@ -43,8 +51,8 @@ public class CatalogueController {
 
 	}
 	
-	public static void main (String[] args) {
-		FenetrePrincipale f = new FenetrePrincipale();
-	}
+//	public static void main (String[] args) {
+//		
+//	}
 
 }

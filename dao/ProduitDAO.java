@@ -105,6 +105,27 @@ public class ProduitDAO implements I_ProduitDAO {
 	}
 	
 	@Override
+	public List<I_Produit> findAllByNomCat(String idCatalogue) {
+		List<I_Produit> produits = new ArrayList<I_Produit>();
+		
+		try {
+			PreparedStatement pst = cn.prepareStatement("{SELECT * FROM Produits WHERE idCatlogue=? ORDER BY nomProduit}");
+			pst.setString(1, idCatalogue);
+			this.rs = pst.executeQuery();
+			while (this.rs.next()) {
+				I_Produit produit = new Produit(this.rs.getString(2), this.rs.getDouble(3), this.rs.getInt(4));
+				produits.add(produit);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ExceptionNomProduitIllegal | ExceptionPrixProduitIllegal | ExceptionQuantiteProduitIllegal e) {
+			e.printStackTrace();
+		}
+		
+		return produits;
+	}
+	
+	@Override
 	public void remove(String nomProduit) {
 		try {
 			CallableStatement cst = cn.prepareCall("{ CALL removeProduit(?) }");
@@ -114,4 +135,6 @@ public class ProduitDAO implements I_ProduitDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 }

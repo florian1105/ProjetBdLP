@@ -95,7 +95,6 @@ public class FenetreAccueil extends JFrame implements ActionListener {
 				System.out.println("ajouter le catalogue "+texteAjout);
 				SelectionController.addCatalogue(texteAjout);
 				txtAjouter.setText(null);
-				
 			}
 		}
 		if (e.getSource() == btSupprimer)

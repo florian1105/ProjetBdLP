@@ -79,15 +79,31 @@ public class CatalogueDAO implements I_CatalogueDAO {
 	
 	@Override
 	public I_Catalogue find(String nom) {
-		return null ; 
+		return null;
 
+	}
+	
+	@Override
+	public String findId(String nom) {
+		try {
+			CallableStatement cst = cn.prepareCall("{ SELECT idCatalogue FROM Catalogues WHERE nomCatalogue=? }");
+			cst.setString(1, nom);
+			cst.execute();
+			if(this.rs.next()) {
+				return rs.getString(2);
+			}
+			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return null;
 	}
 
 	@Override
 	public List<I_Catalogue> findAllInfos() {
 		List<I_Catalogue> catalogues = new ArrayList<I_Catalogue>();
 		try {
-			this.rs = this.st.executeQuery("SELECT nomCatalogue, COUNT(*) FROM CatalogueProduit"
+			this.rs = this.st.executeQuery("SELECT nomCatalogue, COUNT(*) FROM Catalogues C JOIN Produits P ON C.idCatalogue=P.idCatalogue"
 					+ " GROUP BY nomCatalogue");
 			while (this.rs.next()) {
 				I_Catalogue catalogue = new Catalogue(this.rs.getString(2),this.rs.getString(3));
@@ -111,6 +127,8 @@ public class CatalogueDAO implements I_CatalogueDAO {
 		}
 
 	}
+
+	
 
 	
 

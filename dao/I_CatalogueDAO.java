@@ -20,4 +20,6 @@ public interface I_CatalogueDAO {
 
 	List<I_Catalogue> findAllInfos();
 
+	String findId(String nom);
+
 }

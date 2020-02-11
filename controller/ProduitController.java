@@ -1,6 +1,8 @@
 package controller;
 
+import dao.DAOAbstraiteFactory;
 import dao.DAOFactory;
+import dao.I_DAOFactory;
 import dao.I_ProduitDAO;
 import dao.ProduitDAO;
 import entity.I_Produit;
@@ -11,7 +13,8 @@ import exceptions.ExceptionQuantiteProduitIllegal;
 import view.TempPopup;
 
 public class ProduitController {
-	private static I_ProduitDAO produitDAO = DAOFactory.createDao();
+	private static I_DAOFactory daoFact = DAOAbstraiteFactory.getInstance();
+	private static I_ProduitDAO produitDAO = daoFact.createDaoProduit();
 
 	public ProduitController() {
 
@@ -21,8 +24,8 @@ public class ProduitController {
 		return produitDAO;
 	}
 	
-	public static void hydrate() {
-		CatalogueController.hydrate(produitDAO.findAll());
+	public static void hydrate(String idCatalogue) {
+		CatalogueController.hydrate(produitDAO.findAllByNomCat(idCatalogue));
 	}
 
 	public static boolean remove(String nom) {

@@ -65,8 +65,6 @@ public class FenetrePrincipale extends JFrame implements ActionListener,
 		btVente.addActionListener(this);
 		btQuitter.addActionListener(this);
 		
-		ProduitController.hydrate();
-		
 		addWindowListener(this);
 		setVisible(true);
 	}
