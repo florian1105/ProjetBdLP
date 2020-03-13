@@ -103,10 +103,12 @@ public class CatalogueDAO implements I_CatalogueDAO {
 	public List<I_Catalogue> findAllInfos() {
 		List<I_Catalogue> catalogues = new ArrayList<I_Catalogue>();
 		try {
-			this.rs = this.st.executeQuery("SELECT nomCatalogue, COUNT(*) FROM Catalogues C JOIN Produits P ON C.idCatalogue=P.idCatalogue"
-					+ " GROUP BY nomCatalogue");
+			this.rs = this.st.executeQuery("SELECT idCatalogue, nomCatalogue FROM Catalogues");
 			while (this.rs.next()) {
-				I_Catalogue catalogue = new Catalogue(this.rs.getString(2),this.rs.getString(3));
+				int idCat = this.rs.getInt(1);
+				int numberOfProduct = this.getNumberOfProductOfCatalogue(idCat);
+
+				I_Catalogue catalogue = new Catalogue(Integer.toString(idCat), Integer.toString(numberOfProduct));
 				catalogues.add(catalogue);
 			}
 		} catch (SQLException e) {
@@ -114,6 +116,18 @@ public class CatalogueDAO implements I_CatalogueDAO {
 		}
 			
 		return catalogues;
+	}
+
+	private int getNumberOfProductOfCatalogue(int idCatalogue) throws SQLException {
+		PreparedStatement pst = cn.prepareStatement("SELECT COUNT(*) FROM Produits WHERE idCatalogue = ?");
+		pst.setInt(1, idCatalogue);
+		ResultSet rsNumberOfProduct = pst.executeQuery();
+
+		if (!rsNumberOfProduct.next()) {
+			return -1;
+		}
+
+		return rs.getInt(1);
 	}
 
 	@Override
