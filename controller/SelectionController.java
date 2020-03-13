@@ -23,21 +23,23 @@ public class SelectionController {
 	}
 	
 	public String[] getAllCatallogue() {
-		List<String> s = new ArrayList<String>() ; 
+		String[] s = new String[catalogues.size()];
+		int index = 0;
 		for (I_Catalogue catalogue : catalogues) {
-			s.add(catalogue.getNom());
+			s[index] = catalogue.getNom();
+			index++;
 		}
-		 String[] nomCat = (String[]) s.toArray();
-		return nomCat ; 
+		return s;
 	}
 	
 	public String[] getNomEtProduit() {
-		List<String> s = new ArrayList<String>() ; 
+		String[] s = new String[catalogues.size()];
+		int index = 0;
 		for (I_Catalogue catalogue : catalogues) {
-			s.add(catalogue.getNom()+" : "+catalogue.nbProdInitial()+" produits" );
+			s[index] = catalogue.getNom()+" : "+catalogue.nbProdInitial()+" produits";
+			index++;
 		}
-		 String[] nomCatEtProd = (String[]) s.toArray();
-		return nomCatEtProd ; 
+		return s;
 	}
 	
 	public static void addCatalogue(String nom) {
