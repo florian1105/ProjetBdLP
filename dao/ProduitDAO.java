@@ -16,8 +16,17 @@ public class ProduitDAO implements I_ProduitDAO {
 	private Statement st;
 	private ResultSet rs;
 
-	public ProduitDAO() {
-		this.openConnection();
+	public ProduitDAO(Connection cn) {
+		this.cn=cn;
+		try {
+			this.st = this.cn.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY
+					);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -29,10 +38,7 @@ public class ProduitDAO implements I_ProduitDAO {
 					"grauwinm",
 					"1110017777M"
 					);
-			this.st = this.cn.createStatement(
-					ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY
-					);
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -105,12 +111,12 @@ public class ProduitDAO implements I_ProduitDAO {
 	}
 	
 	@Override
-	public List<I_Produit> findAllByNomCat(String idCatalogue) {
+	public List<I_Produit> findAllByIdCat(int idCatalogue) {
 		List<I_Produit> produits = new ArrayList<I_Produit>();
 		
 		try {
 			PreparedStatement pst = cn.prepareStatement("{SELECT * FROM Produits WHERE idCatlogue=? ORDER BY nomProduit}");
-			pst.setString(1, idCatalogue);
+			pst.setInt(1, idCatalogue);
 			this.rs = pst.executeQuery();
 			while (this.rs.next()) {
 				I_Produit produit = new Produit(this.rs.getString(2), this.rs.getDouble(3), this.rs.getInt(4));

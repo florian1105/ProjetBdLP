@@ -84,19 +84,19 @@ public class CatalogueDAO implements I_CatalogueDAO {
 	}
 	
 	@Override
-	public String findId(String nom) {
+	public int findId(String nom) {
 		try {
-			CallableStatement cst = cn.prepareCall("{ SELECT idCatalogue FROM Catalogues WHERE nomCatalogue=? }");
-			cst.setString(1, nom);
-			cst.execute();
+			PreparedStatement pst = cn.prepareStatement("{ SELECT idCatalogue FROM Catalogues WHERE nomCatalogue=? }");
+			pst.setString(1, nom);
+			this.rs = pst.executeQuery();
 			if(this.rs.next()) {
-				return rs.getString(2);
+				return rs.getInt(1);
 			}
-			return null;
+			return -1;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
-		return null;
+		return -1;
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class CatalogueDAO implements I_CatalogueDAO {
 				int idCat = this.rs.getInt(1);
 				int numberOfProduct = this.getNumberOfProductOfCatalogue(idCat);
 
-				I_Catalogue catalogue = new Catalogue(Integer.toString(idCat), Integer.toString(numberOfProduct));
+				I_Catalogue catalogue = new Catalogue(rs.getString(2), Integer.toString(numberOfProduct));
 				catalogues.add(catalogue);
 			}
 		} catch (SQLException e) {
@@ -140,6 +140,11 @@ public class CatalogueDAO implements I_CatalogueDAO {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public Connection getConnection() {
+		return this.cn;
 	}
 
 	

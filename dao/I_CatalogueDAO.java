@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.util.List;
 
 import entity.I_Catalogue;
@@ -20,6 +21,8 @@ public interface I_CatalogueDAO {
 
 	List<I_Catalogue> findAllInfos();
 
-	String findId(String nom);
+	int findId(String nom);
+	
+	Connection getConnection();
 
 }

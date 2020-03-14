@@ -7,7 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import dao.CatalogueDAO;
+import dao.DAOAbstraiteFactory;
 import dao.I_CatalogueDAO;
+import dao.I_ProduitDAO;
 import view.FenetreAccueil;
 import view.FenetrePrincipale;
 import entity.Catalogue;
@@ -16,10 +18,15 @@ import entity.I_Catalogue;
 public class SelectionController {
 	
 	private List<I_Catalogue> catalogues;
-	private static I_CatalogueDAO catDAO = new CatalogueDAO(); 
+	private static DAOAbstraiteFactory daoFact = DAOAbstraiteFactory.getInstance();
+	private static I_CatalogueDAO catDAO = daoFact.createCatalogueDao();
 	
 	public SelectionController() {
 		this.catalogues = catDAO.findAllInfos();
+		for(int i = 0;i<this.catalogues.size();i++ ) {
+			System.out.println(this.catalogues.get(i));
+		}
+		System.out.println(this.catalogues.toString());
 	}
 	
 	public String[] getAllCatallogue() {
@@ -51,8 +58,11 @@ public class SelectionController {
 		catDAO.remove(nom);
 	}
 	
+	
 	public static void changeCatalogue(String nom) {
-		CatalogueController catalogueCtrl = new CatalogueController(nom);
+		ProduitController.setProduitDAO(daoFact.createDaoProduit(catDAO.getConnection()));
+		CatalogueController catalogueCtrl = new CatalogueController(catDAO.findId(nom), nom,catDAO);
+		
 		FenetrePrincipale principale = new FenetrePrincipale();
 	}
 	

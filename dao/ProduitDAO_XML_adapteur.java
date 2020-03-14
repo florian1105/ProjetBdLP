@@ -57,7 +57,7 @@ public class ProduitDAO_XML_adapteur implements I_ProduitDAO {
 	}
 
 	@Override
-	public List<I_Produit> findAllByNomCat(String nomCatalogue) {
+	public List<I_Produit> findAllByIdCat(int idCatalogue) {
 		// TODO Auto-generated method stub
 		return null;
 	}
