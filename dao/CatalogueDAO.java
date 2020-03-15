@@ -86,7 +86,11 @@ public class CatalogueDAO implements I_CatalogueDAO {
 	@Override
 	public int findId(String nom) {
 		try {
+<<<<<<< HEAD
 			PreparedStatement pst = cn.prepareStatement("SELECT idCatalogue FROM Catalogues WHERE nomCatalogue=?");
+=======
+			PreparedStatement pst = cn.prepareStatement("SELECT idCatalogue FROM Catalogues WHERE nomCatalogue= ?");
+>>>>>>> f057207388438ba5ae458523b0d8bab76596d4ae
 			pst.setString(1, nom);
 			this.rs = pst.executeQuery();
 			if(this.rs.next()) {
