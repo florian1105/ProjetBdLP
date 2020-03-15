@@ -127,7 +127,7 @@ public class CatalogueDAO implements I_CatalogueDAO {
 			return -1;
 		}
 
-		return rs.getInt(1);
+		return rsNumberOfProduct.getInt(1);
 	}
 
 	@Override
