@@ -82,7 +82,7 @@ public class FenetreAccueil extends JFrame implements ActionListener {
 		modifierListesCatalogues(tabNomCat);
 		//String[] tab2 = {"Formacia : 6 produits" , "Le Redoutable : 4 produits" , "Noitaicossa : 0 produits" };
 		modifierDetailCatalogues(tabNomCatEtProd);
-		modifierNbCatalogues(3);
+		modifierNbCatalogues(tabNomCat.length);
 		setVisible(true);
 	}
 
@@ -93,7 +93,10 @@ public class FenetreAccueil extends JFrame implements ActionListener {
 			if (!texteAjout.equals(""))
 			{
 				System.out.println("ajouter le catalogue "+texteAjout);
-				SelectionController.addCatalogue(texteAjout);
+				String[] nouvTabNomCatEtProduit = SelectionController.addCatalogue(texteAjout);
+				String[] nouvTabNomCat = SelectionController.getAllCatallogue();
+				int nouvNbCat = nouvTabNomCat.length; 
+				miseAjour(nouvTabNomCat, nouvTabNomCatEtProduit, nouvNbCat);
 				txtAjouter.setText(null);
 			}
 		}
@@ -102,7 +105,10 @@ public class FenetreAccueil extends JFrame implements ActionListener {
 			String texteSupprime = (String)cmbSupprimer.getSelectedItem();
 			if (texteSupprime != null)
 				System.out.println("supprime catalogue "+texteSupprime);
-				SelectionController.remove(texteSupprime);
+				String[] nouvTabNomCatEtProduit = SelectionController.remove(texteSupprime);
+				String[] nouvTabNomCat = SelectionController.getAllCatallogue();
+				int nouvNbCat = nouvTabNomCat.length; 
+				miseAjour(nouvTabNomCat, nouvTabNomCatEtProduit, nouvNbCat);
 		}
 		if (e.getSource() == btSelectionner)
 		{
@@ -138,6 +144,12 @@ public class FenetreAccueil extends JFrame implements ActionListener {
 			for (int i=0 ; i<detailCatalogues.length; i++)
 				taDetailCatalogues.append(detailCatalogues[i]+"\n");
 		}
+	}
+	
+	private void miseAjour(String[] tabNomCat, String[] tabNomCatEtProduit, int nbCat) {
+		modifierListesCatalogues(tabNomCat);
+		modifierDetailCatalogues(tabNomCatEtProduit);
+		modifierNbCatalogues(nbCat);
 	}
 	
 //	public static void main(String[] args) {

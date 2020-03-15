@@ -17,19 +17,15 @@ import entity.I_Catalogue;
 
 public class SelectionController {
 	
-	private List<I_Catalogue> catalogues;
+	private static List<I_Catalogue> catalogues;
 	private static DAOAbstraiteFactory daoFact = DAOAbstraiteFactory.getInstance();
 	private static I_CatalogueDAO catDAO = daoFact.createCatalogueDao();
 	
 	public SelectionController() {
-		this.catalogues = catDAO.findAllInfos();
-		for(int i = 0;i<this.catalogues.size();i++ ) {
-			System.out.println(this.catalogues.get(i));
-		}
-		System.out.println(this.catalogues.toString());
+		catalogues = catDAO.findAllInfos();
 	}
 	
-	public String[] getAllCatallogue() {
+	public static String[] getAllCatallogue() {
 		String[] s = new String[catalogues.size()];
 		int index = 0;
 		for (I_Catalogue catalogue : catalogues) {
@@ -39,7 +35,7 @@ public class SelectionController {
 		return s;
 	}
 	
-	public String[] getNomEtProduit() {
+	public static String[] getNomEtProduit() {
 		String[] s = new String[catalogues.size()];
 		int index = 0;
 		for (I_Catalogue catalogue : catalogues) {
@@ -49,13 +45,17 @@ public class SelectionController {
 		return s;
 	}
 	
-	public static void addCatalogue(String nom) {
+	public static String[] addCatalogue(String nom) {
 		I_Catalogue catalogue = new Catalogue(nom,"0");
 		catDAO.create(catalogue);
+		catalogues = catDAO.findAllInfos();
+		return getNomEtProduit();
 	}
 	
-	public static void remove(String nom) {
+	public static String[] remove(String nom) {
 		catDAO.remove(nom);
+		catalogues = catDAO.findAllInfos();
+		return getNomEtProduit();
 	}
 	
 	

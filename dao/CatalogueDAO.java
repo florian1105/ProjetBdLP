@@ -86,7 +86,7 @@ public class CatalogueDAO implements I_CatalogueDAO {
 	@Override
 	public int findId(String nom) {
 		try {
-			PreparedStatement pst = cn.prepareStatement("{ SELECT idCatalogue FROM Catalogues WHERE nomCatalogue=? }");
+			PreparedStatement pst = cn.prepareStatement("SELECT idCatalogue FROM Catalogues WHERE nomCatalogue=?");
 			pst.setString(1, nom);
 			this.rs = pst.executeQuery();
 			if(this.rs.next()) {
@@ -103,7 +103,7 @@ public class CatalogueDAO implements I_CatalogueDAO {
 	public List<I_Catalogue> findAllInfos() {
 		List<I_Catalogue> catalogues = new ArrayList<I_Catalogue>();
 		try {
-			this.rs = this.st.executeQuery("SELECT idCatalogue, nomCatalogue FROM Catalogues");
+			this.rs = this.st.executeQuery("SELECT idCatalogue, nomCatalogue FROM Catalogues ORDER BY idCatalogue");
 			while (this.rs.next()) {
 				int idCat = this.rs.getInt(1);
 				int numberOfProduct = this.getNumberOfProductOfCatalogue(idCat);
