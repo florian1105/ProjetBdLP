@@ -50,8 +50,12 @@ public class CatalogueController {
 		return cat.vendreStock(nom,quantite);
 
 	}
-	
-//	public static void main (String[] args) {
+
+	public static I_CatalogueDAO getCatDAO() {
+		return catDAO;
+	}
+
+	//	public static void main (String[] args) {
 //		
 //	}
 

@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.CatalogueController;
+import controller.ProduitController;
+import controller.SelectionController;
 import entity.I_Produit;
 import entity.Produit;
 import exceptions.ExceptionNomProduitIllegal;
@@ -58,10 +61,12 @@ public class ProduitDAO implements I_ProduitDAO {
 	@Override
 	public void create(I_Produit produit) {
 		try {
-			CallableStatement cst = cn.prepareCall("{ CALL addProduit(?, ?, ?) }");
+			CallableStatement cst = cn.prepareCall("{ CALL addProduit(?, ?, ?, ?) }");
 			cst.setString(1, produit.getNom());
 			cst.setDouble(2, produit.getPrixUnitaireHT());
 			cst.setInt(3, produit.getQuantite());
+			int idCat = CatalogueController.getCatDAO().findId(CatalogueController.getCatalogue().getNom());
+			cst.setInt(4, idCat);
 			cst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,7 +120,7 @@ public class ProduitDAO implements I_ProduitDAO {
 		List<I_Produit> produits = new ArrayList<I_Produit>();
 		
 		try {
-			PreparedStatement pst = cn.prepareStatement("{SELECT * FROM Produits WHERE idCatlogue=? ORDER BY nomProduit}");
+			PreparedStatement pst = cn.prepareStatement("SELECT * FROM Produits WHERE idCatalogue = ? ORDER BY nomProduit ");
 			pst.setInt(1, idCatalogue);
 			this.rs = pst.executeQuery();
 			while (this.rs.next()) {

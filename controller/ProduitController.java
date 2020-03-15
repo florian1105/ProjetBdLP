@@ -4,6 +4,7 @@ import dao.DAOAbstraiteFactory;
 import dao.DAOFactory;
 import dao.I_ProduitDAO;
 import dao.ProduitDAO;
+import entity.Catalogue;
 import entity.I_Produit;
 import entity.Produit;
 import exceptions.ExceptionNomProduitIllegal;
@@ -43,6 +44,7 @@ public class ProduitController {
 			if (!CatalogueController.add(produit)) {
 				throw new ExceptionNomProduitIllegal();
 			}
+
 			produitDAO.create(produit);
 			TempPopup.ShowTempPopup(quantite+" articles "+nom+" à bien été crée");				
 			return true;
