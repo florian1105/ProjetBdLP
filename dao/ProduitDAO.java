@@ -120,11 +120,7 @@ public class ProduitDAO implements I_ProduitDAO {
 		List<I_Produit> produits = new ArrayList<I_Produit>();
 		
 		try {
-<<<<<<< HEAD
-			PreparedStatement pst = cn.prepareStatement("SELECT * FROM Produits WHERE idCatalogue=? ORDER BY nomProduit");
-=======
 			PreparedStatement pst = cn.prepareStatement("SELECT * FROM Produits WHERE idCatalogue = ? ORDER BY nomProduit ");
->>>>>>> f057207388438ba5ae458523b0d8bab76596d4ae
 			pst.setInt(1, idCatalogue);
 			this.rs = pst.executeQuery();
 			while (this.rs.next()) {
